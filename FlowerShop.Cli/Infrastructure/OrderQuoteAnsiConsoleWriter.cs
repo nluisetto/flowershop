@@ -13,7 +13,7 @@ public class OrderQuoteAnsiConsoleWriter : IOrderQuoteCliWriter
 
             foreach (var bundleDetail in quoteRow.BundleDetails.OrderByDescending((bundleDetail) => bundleDetail.Bundle.Quantity))
             {
-                Console.WriteLine($"    {bundleDetail.Count} {bundleDetail.Bundle.Quantity} {bundleDetail.TotalPrice:c}");
+                Console.WriteLine($"    {bundleDetail.Count} x {bundleDetail.Bundle.Quantity} {bundleDetail.Bundle.Price:c}");
             }
         }
     }
