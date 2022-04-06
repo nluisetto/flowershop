@@ -7,9 +7,9 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="about-the-project">About The Project</a>
+      <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#techstack">Tech stack</a></li>
+        <li><a href="#tech-stack">Tech stack</a></li>
         <li><a href="#how-it-works">How it works</a></li>
       </ul>
     </li>
@@ -24,7 +24,7 @@
             <li><a href="#with-docker">With Docker</a></li>
           </ul>
         </li>
-        <li><a href="configuring-available-bundles">Configuring available bundles</a></li>
+        <li><a href="#configuring-available-bundles">Configuring available bundles</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -58,7 +58,7 @@ Some concepts/patterns of Domain Driven Design are also used in the design of th
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### How it works
-Two different implementation of the bundle optimization responsibility are included: [GoogleOrToolsOrderRowFiller](FlowerShop.Infrastructure/GoogleOrToolsOrderRowFiller.cs) and [CartesianProductOrderRowFiller]().
+Two different implementation of the bundle optimization responsibility are included: [GoogleOrToolsOrderRowFiller](FlowerShop.Infrastructure/GoogleOrToolsOrderRowFiller.cs) and [CartesianProductOrderRowFiller](FlowerShop.Infrastructure/CartesianProductOrderRowFiller.cs).
 
 `GoogleOrToolsOrderRowFiller` leverage the awesome [Google OR-Tools library](https://developers.google.com/optimization/) to solve the optimization problem, while `CartesianProductOrderRowFiller` compute all possibles combinations of bundle quantities (using 0 as the lower bound and orderRow.quantity / bundle.quantity as the upper bound), it then filter out the combinations that does not match the required orderRow.quantity and in the end it takes the combination that exibit the less total bundle count.
 
@@ -171,7 +171,6 @@ $ docker run --rm nico/flowershop-cli create-quote "10 R12" "15 L09" "13 T58"
 ## Known issues
 
 - When running the application though the Docker image, the currency symbol is not rendered correctly
-- Link in the TOC do not work
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
