@@ -9,7 +9,8 @@
     <li>
       <a href="about-the-project">About The Project</a>
       <ul>
-        <li><a href="#builtwith">Built With</a></li>
+        <li><a href="#techstack">Tech stack</a></li>
+        <li><a href="#how-it-works">How it works</a></li>
       </ul>
     </li>
     <li>
@@ -41,14 +42,14 @@
 FlowerShop helps you run your wonderful flower shop (I'm kidding, it's just a coding exercise).  
 As of now it provides a CLI application with only one implemented feature: the optimization of the number of bundles needed to satisfy a given order.
 
-The architecture reflect in some way my take on Clean Architecture even though it's far from complete.
+The architecture reflect in some way my take on Clean Architecture even though it's far from comprehensive.
 
 Some concepts/patterns of Domain Driven Design are also used in the design of the domain layer.
 
-### Built With
+### Tech stack
 
 * [.NET 6](https://dotnet.microsoft.com/en-us/)
-* [OR Tools](https://developers.google.com/optimization/)
+* [OR-Tools](https://developers.google.com/optimization/)
 * [Spectre.Console](https://spectreconsole.net/)
 * [xUnit](https://xunit.net/)
 * [MediatR](https://github.com/jbogard/MediatR)
@@ -56,7 +57,14 @@ Some concepts/patterns of Domain Driven Design are also used in the design of th
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+### How it works
+Two different implementation of the bundle optimization responsibility are included: [GoogleOrToolsOrderRowFiller](FlowerShop.Infrastructure/GoogleOrToolsOrderRowFiller.cs) and [CartesianProductOrderRowFiller]().
 
+`GoogleOrToolsOrderRowFiller` leverage the awesome [Google OR-Tools library](https://developers.google.com/optimization/) to solve the optimization problem, while `CartesianProductOrderRowFiller` compute all possibles combinations of bundle quantities (using 0 as the lower bound and orderRow.quantity / bundle.quantity as the upper bound), it then filter out the combinations that does not match the required orderRow.quantity and in the end it takes the combination that exibit the less total bundle count.
+
+Would you like to switch implementation, you can comment / uncomment the related lines in [ServiceCollectionExtensions.cs](FlowerShop.Infrastructure/ServiceCollectionExtensions.cs), and then build and run the project as demonstrated in the Getting Started section. 
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -163,6 +171,7 @@ $ docker run --rm nico/flowershop-cli create-quote "10 R12" "15 L09" "13 T58"
 ## Known issues
 
 - When running the application though the Docker image, the currency symbol is not rendered correctly
+- Link in the TOC do not work
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

@@ -11,6 +11,9 @@ public static class ServiceCollectionExtensions
         return serviceCollection
             .AddMediatR(requestHandlers)
             .AddScoped<IBundleRepository, InMemoryBundleRepository>((_) => new InMemoryBundleRepository(bundles))
+            
+            // Here you can choose which implementation of the optimization algorithm will be used by the application
             .AddScoped<IOrderRowFiller, GoogleOrToolsOrderRowFiller>();
+            // .AddScoped<IOrderRowFiller, CartesianProductOrderRowFiller>();
     }
 }
